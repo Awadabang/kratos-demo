@@ -1,7 +1,7 @@
 package server
 
 import (
-	v1 "helloworld/api/helloworld/v1"
+	v1 "helloworld/api/gen/helloworld/v1"
 	"helloworld/internal/conf"
 	"helloworld/internal/service"
 
