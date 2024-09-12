@@ -1,0 +1,33 @@
+version: v2
+
+managed:
+  enabled: true
+  disable:
+    - module: buf.build/googleapis/googleapis
+  override:
+    - file_option: go_package_prefix
+      value: helloworld/api/gen
+
+plugins:
+  - local: protoc-gen-go
+    out: gen
+    opt: paths=source_relative
+  - local: protoc-gen-go-grpc
+    out: gen
+    opt: paths=source_relative
+  # ref: https://github.com/go-kratos/kratos/tree/main/cmd/protoc-gen-go-http
+  - local: protoc-gen-go-http
+    out: gen
+    opt: paths=source_relative
+  - local: protoc-gen-openapiv2
+    out: gen/swagger
+    opt:
+      - allow_merge=false
+
+inputs:
+  - directory: protos
+  - module: buf.build/googleapis/googleapis:main
+    paths:
+      - google/api/annotations.proto
+      - google/api/http.proto
+
