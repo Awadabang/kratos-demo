@@ -9,17 +9,17 @@ managed:
       value: helloworld/api/gen
 
 plugins:
-  - remote: buf.build/protocolbuffers/go:v1.31.0
+  - local: protoc-gen-go
     out: gen
     opt: paths=source_relative
-  - remote: buf.build/grpc/go:v1.4.0
+  - local: protoc-gen-go-grpc
     out: gen
     opt: paths=source_relative
   # ref: https://github.com/go-kratos/kratos/tree/main/cmd/protoc-gen-go-http
   - local: protoc-gen-go-http
     out: gen
     opt: paths=source_relative
-  - remote: buf.build/grpc-ecosystem/openapiv2:v2.20.0
+  - local: protoc-gen-openapiv2
     out: gen/swagger
     opt:
       - allow_merge=false
@@ -29,4 +29,5 @@ inputs:
   - module: buf.build/googleapis/googleapis:main
     paths:
       - google/api/annotations.proto
+      - google/api/http.proto
 
